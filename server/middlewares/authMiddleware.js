@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel'); // Adjust the path if necessary
 const { promisify } = require('util'); // To promisify jwt.verify function
