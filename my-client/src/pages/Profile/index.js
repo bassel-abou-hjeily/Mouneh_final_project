@@ -1,9 +1,12 @@
 
 import React from 'react';
 import { Tabs } from 'antd';
-import Products from "../Products"; 
+import Products from "../Products";
 import Orders from "../Profile/UserOrders"
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 function Profile() {
+  const { user } = useSelector((state) => state.users);
   return (
     <div style={{ padding: '20px' }}>
       <Tabs defaultActiveKey="1" centered>
@@ -18,10 +21,21 @@ function Profile() {
           {/* يمكنك إضافة محتوى أو وظائف لعلامة التبويب "الطلبات" هنا */}
         </Tabs.TabPane>
 
-        {/* علامة تبويب عام */}
         <Tabs.TabPane tab="عام" key="3">
-          <h1>عام</h1>
-          {/* يمكنك إضافة محتوى أو إعدادات عامة هنا */}
+          <div className='flex flex-col w-1/3'>
+            <span className='text-xl flex justify-between'>
+              الاسم: <span className='text-xl'>{user.name}</span>
+            </span>
+            <span className='text-xl flex justify-between'>
+              البريد الإلكتروني: <span className='text-xl'>{user.email}</span>
+            </span>
+            <span className='text-xl flex justify-between'>
+              تاريخ الإنشاء:{" "}
+              <span className='text-xl'>
+                {moment(user.createdAt).format("MMM D , YYY hh:mm A")}
+              </span>
+            </span>
+          </div>
         </Tabs.TabPane>
       </Tabs>
     </div>
